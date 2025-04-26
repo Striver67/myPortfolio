@@ -26,7 +26,7 @@ export default function Fun() {
             console.log("Google login successful:", credentialResponse);
             setIsLoggedIn(true); // yeh localStorage update karega
           }}
-          onError={(error) => {
+          onError={(error : any) => {
             console.log("Google login failed:", error);
           }}
           useOneTap
