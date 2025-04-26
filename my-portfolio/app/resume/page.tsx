@@ -17,8 +17,8 @@ export default function Resume() {
             console.log("Google login successful:", credentialResponse);
             setIsLoggedIn(true);
           }}
-          onError={(error) => {
-            console.log("Google login failed:", error);
+          onError={() => {
+            console.log("Google login failed:");
           }}
           useOneTap
         />
