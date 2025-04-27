@@ -2,9 +2,14 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 
-const LoginContext = createContext({
+interface LoginContextType {
+  isLoggedIn: boolean;
+  setIsLoggedIn: (loggedIn: boolean) => void;
+}
+
+const LoginContext = createContext<LoginContextType>({
   isLoggedIn: false,
-  setIsLoggedIn: (loggedIn: boolean) => {},
+  setIsLoggedIn: () => {},
 });
 
 export const useLogin = () => useContext(LoginContext);

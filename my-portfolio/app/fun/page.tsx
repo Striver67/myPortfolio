@@ -1,8 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useLogin } from "../context/LoginContext"; 
+import { useLogin } from "../context/LoginContext";
 import { GoogleLogin } from "@react-oauth/google";
+import { motion } from "framer-motion"; // ✅ import motion
 
 const categories = [
   { name: "System Design", slug: "system-design", emoji: "🧠" },
@@ -17,26 +18,36 @@ export default function Fun() {
 
   if (!isLoggedIn) {
     return (
-      <div className="flex flex-col items-center justify-center h-[80vh] gap-4">
+      <motion.div
+        className="flex flex-col items-center justify-center h-[80vh] gap-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <h2 className="text-2xl font-semibold text-center mb-4">
           Please Sign in to access quizzes 🚀
         </h2>
         <GoogleLogin
           onSuccess={(credentialResponse) => {
             console.log("Google login successful:", credentialResponse);
-            setIsLoggedIn(true); // yeh localStorage update karega
+            setIsLoggedIn(true);
           }}
           onError={() => {
             console.log("Google login failed.");
           }}
           useOneTap
         />
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div className="p-10">
+    <motion.div
+      className="p-10"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       <h2 className="text-3xl font-bold text-blue-700 mb-6">🎯 Choose Your Quiz</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {categories.map((cat) => (
@@ -51,6 +62,6 @@ export default function Fun() {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
